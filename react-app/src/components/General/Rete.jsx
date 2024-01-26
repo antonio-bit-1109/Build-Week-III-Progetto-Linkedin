@@ -6,6 +6,7 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { fetchData } from "../../redux/functions/fetch";
+import { fetchPutCommenti } from "../../redux/functions/fetchPutCommenti";
 import { TokenCommenti } from "../../token";
 import { setdataFetchGetCommenti } from "../../redux/reducers/StateSliceReducers";
 
@@ -42,8 +43,18 @@ const Rete = () => {
     const handleShow = () => setShow(true);
     console.log("elencoCommenti", elencoCommenti);
 
-    const handlePut = () => {
+    const handleModificaCommento = async (event) => {
+        event.preventDefault();
         console.log("ciao");
+        await fetchPutCommenti(datiModale, datiModale._id);
+        dispatch(
+            fetchData(
+                "https://striveschool-api.herokuapp.com/api/comments/",
+                "",
+                optionsGetCommenti,
+                setdataFetchGetCommenti
+            )
+        );
     };
 
     return (
@@ -54,7 +65,7 @@ const Rete = () => {
                         {" "}
                         <h2>Elenco dei commenti </h2>{" "}
                     </div>
-                    {elencoCommenti.slice(0, 20).map((commento) => (
+                    {elencoCommenti.slice(900, 999).map((commento) => (
                         <Container key={`commento${commento._id}`}>
                             <Row>
                                 <Col>
@@ -89,7 +100,12 @@ const Rete = () => {
                                 <Modal.Title>uN MODALE VALIDO PER TUTTI</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form>
+                                <Form
+                                    onSubmit={(event) => {
+                                        handleClose();
+                                        handleModificaCommento(event);
+                                    }}
+                                >
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                         <Form.Label>Autore del commento</Form.Label>
                                         <Form.Control
@@ -129,22 +145,16 @@ const Rete = () => {
                                             }
                                         />
                                     </Form.Group>
+                                    <Modal.Footer>
+                                        <Button variant="secondary" onClick={handleClose}>
+                                            Close
+                                        </Button>
+                                        <Button variant="primary" type="submit">
+                                            Save Changes
+                                        </Button>
+                                    </Modal.Footer>
                                 </Form>
                             </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Close
-                                </Button>
-                                <Button
-                                    variant="primary"
-                                    onClick={() => {
-                                        handleClose();
-                                        handlePut();
-                                    }}
-                                >
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
                         </Modal>
                     </div>
                 </div>

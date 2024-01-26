@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/Profile/ProfilePage";
 import Home from "./components/Home/Home";
 import Lavoro from "./components/Job/Lavoro";
+import Rete from "./components/General/Rete";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/me" element={<Me />} />
                 <Route path="/:userId" element={<ProfilePage />} />
                 <Route path="/job" element={<Lavoro />} />
+                <Route path="/praticaModale" element={<Rete />} />
             </Routes>
             <Messaggistica />
             <Footer />

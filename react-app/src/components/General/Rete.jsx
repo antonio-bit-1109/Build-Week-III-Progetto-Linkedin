@@ -33,10 +33,18 @@ const Rete = () => {
 
     const elencoCommenti = useSelector((state) => state.FetchData.dataFetchGetCommenti);
     const [show, setShow] = useState(false);
-    const [datiModale, setDatiModale] = useState(null);
+    const [datiModale, setDatiModale] = useState({
+        comment: "",
+        rate: "",
+        elementId: "",
+    });
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     console.log("elencoCommenti", elencoCommenti);
+
+    const handlePut = () => {
+        console.log("ciao");
+    };
 
     return (
         <>
@@ -47,7 +55,7 @@ const Rete = () => {
                         <h2>Elenco dei commenti </h2>{" "}
                     </div>
                     {elencoCommenti.slice(0, 20).map((commento) => (
-                        <Container>
+                        <Container key={`commento${commento._id}`}>
                             <Row>
                                 <Col>
                                     <div className="d-flex align-items-center">
@@ -84,15 +92,42 @@ const Rete = () => {
                                 <Form>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                         <Form.Label>Autore del commento</Form.Label>
-                                        <Form.Control type="text" /*  value={null || datiModale.author} */ />
+                                        <Form.Control
+                                            type="text"
+                                            value={datiModale.author}
+                                            onChange={(event) =>
+                                                setDatiModale((prevState) => ({
+                                                    ...prevState,
+                                                    author: event.target.value,
+                                                }))
+                                            }
+                                        />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                         <Form.Label>commento</Form.Label>
-                                        <Form.Control type="text" /* value={null || datiModale.comment} */ />
+                                        <Form.Control
+                                            type="text"
+                                            value={datiModale.comment}
+                                            onChange={(event) =>
+                                                setDatiModale((prevState) => ({
+                                                    ...prevState,
+                                                    comment: event.target.value,
+                                                }))
+                                            }
+                                        />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                         <Form.Label>valutazione in fiorellini</Form.Label>
-                                        <Form.Control type="text" /* value={null || datiModale.rate} */ />
+                                        <Form.Control
+                                            type="text"
+                                            value={datiModale.rate}
+                                            onChange={(event) =>
+                                                setDatiModale((prevState) => ({
+                                                    ...prevState,
+                                                    rate: event.target.value,
+                                                }))
+                                            }
+                                        />
                                     </Form.Group>
                                 </Form>
                             </Modal.Body>
@@ -100,7 +135,13 @@ const Rete = () => {
                                 <Button variant="secondary" onClick={handleClose}>
                                     Close
                                 </Button>
-                                <Button variant="primary" onClick={handleClose}>
+                                <Button
+                                    variant="primary"
+                                    onClick={() => {
+                                        handleClose();
+                                        handlePut();
+                                    }}
+                                >
                                     Save Changes
                                 </Button>
                             </Modal.Footer>

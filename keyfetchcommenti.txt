@@ -1,0 +1,5 @@
+fetch("https://striveschool-api.herokuapp.com/api/comments/", {
+headers: {
+"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTcxY2JhMDBkOGEyMDAwMThhNDhhNDAiLCJpYXQiOjE3MDYyMjg4MTUsImV4cCI6MTcwNzQzODQxNX0.tqx0v2i4pJFyoqQJjLbWY-FfedcknXxf_BUNA90YYDU"
+}
+})

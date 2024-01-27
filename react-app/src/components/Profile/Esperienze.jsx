@@ -153,7 +153,7 @@ const Esperienze = (props) => {
                                             {
                                                 <Button variant="light" className="rounded-pill px-3">
                                                     <div className="rounded-pill hover ">
-                                                        <Pencil></Pencil>
+                                                        <Pencil />
                                                     </div>
                                                 </Button>
                                             }

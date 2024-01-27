@@ -19,9 +19,6 @@ const ModaleEsperienzaPut = ({
                         onSubmit={(event) => {
                             handleMakeAPut(event);
                         }}
-                        /*  onSubmit={(event) => {
-                HandleMakeAPost(event);
-            }} */
                     >
                         <Form.Group className="mb-3" controlId="formRuolo">
                             <Form.Label>Ruolo:</Form.Label>

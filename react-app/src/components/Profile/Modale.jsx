@@ -26,7 +26,7 @@ const Modale = (props) => {
         area: "",
     });
 
-    useEffect(() => {
+    /*    useEffect(() => {
         if (props.esperienza !== undefined) {
             setDati({
                 role: props.esperienza.role,
@@ -38,10 +38,10 @@ const Modale = (props) => {
             });
             setMethod("PUT");
         }
-    }, [props.esperienza]);
+    }, [props.esperienza]); */
 
     /* opzioni per la put  */
-    const handleSubmitPut = async (event) => {
+    /*     const handleSubmitPut = async (event) => {
         const optionsPut = {
             method: "PUT",
             headers: {
@@ -57,7 +57,7 @@ const Modale = (props) => {
         setTimeout(() => {
             dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
         }, 500);
-    };
+    }; */
 
     const handleSubmitPost = async (event) => {
         const optionsPost = {
@@ -89,13 +89,13 @@ const Modale = (props) => {
             >
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        {method === "PUT" ? "Aggiorna Esperienza" : "Inserisci Nuova Esperienze"}
+                        {/*  {method === "PUT" ? "Aggiorna Esperienza" : "Inserisci Nuova Esperienze"} */}
                     </Modal.Title>
                 </Modal.Header>
                 <Row>
                     <Col>
                         <Modal.Body>
-                            <Form onSubmit={method === "PUT" ? handleSubmitPut : handleSubmitPost}>
+                            <Form /* onSubmit={method === "PUT" ? handleSubmitPut : handleSubmitPost} */>
                                 <Form.Group className="mb-3" controlId="formGroupEmail">
                                     <Form.Label>Role:</Form.Label>
                                     <Form.Control
@@ -177,13 +177,13 @@ const Modale = (props) => {
                                     variant="success"
                                 >
                                     {" "}
-                                    {method === "PUT" ? "Aggiorna dati" : "Invia Dati"}
+                                    {/*  {method === "PUT" ? "Aggiorna dati" : "Invia Dati"} */}
                                 </Button>
 
                                 <Button
-                                    onClick={() => {
+                                /* onClick={() => {
                                         props.onHide(); // Chiude il modal
-                                    }}
+                                    }} */
                                 >
                                     Chiudi
                                 </Button>

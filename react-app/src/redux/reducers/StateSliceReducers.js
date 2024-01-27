@@ -9,6 +9,7 @@ const SliceMain = createSlice({
         dataFetchLavori: null,
         queryLavori: "",
         dataFetchGetCommenti: null,
+        dataElencoProfili: null,
     },
 
     reducers: {
@@ -35,6 +36,10 @@ const SliceMain = createSlice({
         setdataFetchGetCommenti: (state, action) => {
             state.dataFetchGetCommenti = action.payload;
         },
+
+        setDataElencoProfili: (state, action) => {
+            state.dataElencoProfili = action.payload;
+        },
     },
 });
 
@@ -45,5 +50,6 @@ export const {
     setDataFetchLavori,
     setQueryLavori,
     setdataFetchGetCommenti,
+    setDataElencoProfili,
 } = SliceMain.actions;
 export default SliceMain.reducer;

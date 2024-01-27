@@ -16,7 +16,6 @@ const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 
 const Modale = (props) => {
     const dispatch = useDispatch();
-    const [method, setMethod] = useState("POST");
     const [dati, setDati] = useState({
         role: "",
         company: "",
@@ -25,6 +24,7 @@ const Modale = (props) => {
         description: "",
         area: "",
     });
+    /*  const [method, setMethod] = useState("POST"); */
 
     /*    useEffect(() => {
         if (props.esperienza !== undefined) {

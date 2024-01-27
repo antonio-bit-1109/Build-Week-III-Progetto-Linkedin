@@ -33,6 +33,13 @@ const Esperienze = (props) => {
     const dispatch = useDispatch();
     const datiFetchEsperienze = useSelector((state) => state.FetchData.dataFetchEsperienze);
     const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [showModalPut, setShowModalPut] = useState(false);
+    const handleCloseModalPut = () => setShowModalPut(false);
+    const handleShowModalPut = () => setShowModalPut(true);
+
     const [esperienzaData, setEsperienzaData] = useState({
         role: "",
         company: "",
@@ -43,9 +50,6 @@ const Esperienze = (props) => {
     });
 
     console.log("userid", userid);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     useEffect(() => {
         dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
@@ -153,7 +157,11 @@ const Esperienze = (props) => {
                                             {
                                                 <Button variant="light" className="rounded-pill px-3">
                                                     <div className="rounded-pill hover ">
-                                                        <Pencil />
+                                                        <Pencil
+                                                            onClick={() => {
+                                                                handleShowModalPut();
+                                                            }}
+                                                        />
                                                     </div>
                                                 </Button>
                                             }
@@ -277,6 +285,100 @@ const Esperienze = (props) => {
                                                     }, 700);
                                                 }}
                                             >
+                                                Save Changes
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Form>
+                                </Modal.Body>
+                            </Modal>
+                            {/* ------------------------------------------------------------------------------------- */}
+                            <Modal show={showModalPut} onHide={handleCloseModalPut}>
+                                <Modal.Header>
+                                    <Modal.Title>Aggiorna Nuova Esperienza </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Form
+                                    /*  onSubmit={(event) => {
+                                            HandleMakeAPost(event);
+                                        }} */
+                                    >
+                                        <Form.Group className="mb-3" controlId="formRuolo">
+                                            <Form.Label>Ruolo:</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="inserisci ruolo"
+                                                /* onChange={(event) => {
+                                                    setEsperienzaData({ ...esperienzaData, role: event.target.value });
+                                                }} */
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Company:</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="inserisci Company"
+                                                /* onChange={(event) => {
+                                                    setEsperienzaData({
+                                                        ...esperienzaData,
+                                                        company: event.target.value,
+                                                    });
+                                                }} */
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Data Inizio Lavoro</Form.Label>
+                                            <Form.Control
+                                                type="date"
+                                                placeholder="inserisci data inizio lavoro"
+                                                /*  onChange={(event) => {
+                                                    setEsperienzaData({
+                                                        ...esperienzaData,
+                                                        startDate: event.target.value,
+                                                    });
+                                                }} */
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Data Fine Lavoro (non oblbigatoria)</Form.Label>
+                                            <Form.Control
+                                                type="date"
+                                                placeholder="inserisci data termine lavoro"
+                                                /* onChange={(event) => {
+                                                    setEsperienzaData({
+                                                        ...esperienzaData,
+                                                        endDate: event.target.value,
+                                                    });
+                                                }} */
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Descrizione:</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="inserisci descrizione"
+                                                /* onChange={(event) => {
+                                                    setEsperienzaData({
+                                                        ...esperienzaData,
+                                                        description: event.target.value,
+                                                    });
+                                                }} */
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Luogo Di lavoro: </Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="inserisci luodo di lavoro "
+                                                /*  onChange={(event) => {
+                                                    setEsperienzaData({ ...esperienzaData, area: event.target.value });
+                                                }} */
+                                            />
+                                        </Form.Group>
+                                        <Modal.Footer>
+                                            <Button variant="secondary" onClick={handleCloseModalPut}>
+                                                Close
+                                            </Button>
+                                            <Button variant="primary" onClick={handleCloseModalPut}>
                                                 Save Changes
                                             </Button>
                                         </Modal.Footer>

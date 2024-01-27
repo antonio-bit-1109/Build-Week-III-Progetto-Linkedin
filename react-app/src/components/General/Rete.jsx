@@ -57,6 +57,18 @@ const Rete = () => {
         );
     };
 
+    const arrayCommentiOrdineCronologico = () => {
+        let elencoCommentiTagliato = [...elencoCommenti];
+        let elencoCommentitagliatoReverse = elencoCommentiTagliato.reverse().slice(0, 20);
+        console.log("elencoCommentitagliatoReverse", elencoCommentitagliatoReverse);
+        return elencoCommentitagliatoReverse;
+    };
+    useEffect(() => {
+        if (elencoCommenti) {
+            arrayCommentiOrdineCronologico();
+        }
+    }, [elencoCommenti]);
+
     return (
         <>
             {elencoCommenti && (
@@ -65,7 +77,7 @@ const Rete = () => {
                         {" "}
                         <h2>Elenco dei commenti </h2>{" "}
                     </div>
-                    {elencoCommenti.slice(900, 999).map((commento) => (
+                    {arrayCommentiOrdineCronologico().map((commento) => (
                         <Container key={`commento${commento._id}`}>
                             <Row>
                                 <Col>

@@ -3,9 +3,10 @@
 /* dispatch inserito dopo async serve per avere accesso alle action presenti nel reducer e quindi per avere accesso agli stati in redux  */
 /* con il getstate puoi accedere, direttamente nella fetch ad uno stato di redux  */
 
-export const fetchData = (url, parametroOpzionale, options, action, lastAction) => async (dispatch) => {
+export const fetchData = (url, parametroOpzionale, options, action) => async (dispatch) => {
     try {
         // Set to true before fetching
+
         const fetchResponse = await fetch(url + parametroOpzionale, options);
 
         if (!fetchResponse.ok) {
@@ -27,9 +28,9 @@ export const fetchData = (url, parametroOpzionale, options, action, lastAction) 
         dispatch(action(fetchData));
 
         /*  QUALCOSA DA FARE FINITA LA FETCH ?? */
-        if (lastAction) {
+        /*   if (lastAction) {
             dispatch(lastAction());
-        }
+        } */
     } catch (error) {
         console.error("Error fetching data:", error);
     }

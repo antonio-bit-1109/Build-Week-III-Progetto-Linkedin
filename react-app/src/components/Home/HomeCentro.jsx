@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Token, TokenCommenti } from "../../token";
 import { setDataFetchPaginaNotizie } from "../../redux/reducers/StateSliceReducers";
 import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
+
 import Form from "react-bootstrap/Form";
 import {
     CalendarFill,
@@ -26,6 +27,7 @@ const HomeCentro = () => {
     const dispatch = useDispatch();
     const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
     const commentiHome = useSelector((state) => state.FetchData.dataFetchGetCommenti);
+
     console.log("commentiHome", commentiHome);
 
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
@@ -184,7 +186,9 @@ const HomeCentro = () => {
                     </div>
                 </Row>
             </div>
+
             {/* sezione notizie  */}
+
             {arrayNotizieTagliato().map((post) => (
                 <div key={`post -${post._id}`} className="bg-white my-2 border rounded-3">
                     <Row>
